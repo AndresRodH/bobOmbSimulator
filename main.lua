@@ -14,4 +14,4 @@ _mui_debug = true
 local composer = require "composer"
 
 -- load menu screen
-composer.gotoScene( "menu" )
+composer.gotoScene( "login" )
