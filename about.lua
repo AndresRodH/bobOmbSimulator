@@ -10,9 +10,28 @@ function scene:create( event )
 	--and it contains a unique self.view property which is a reference to the display group associated with the scene. 
 	--This self.view is where you should insert visual elements pertaining to the scene.
 	
-    local text1 = display.newImageRect( "./img/made.png", 575, 640 )
-    text1.x = display.contentCenterX
-    text1.y = display.contentCenterY
+	-- logo
+    local logo = display.newImageRect( "./img/made.png", 846, 307 )
+    logo.x = display.contentCenterX
+    logo.y = display.contentCenterY - 200
+
+	-- website link
+    local website = display.newText( "WEBSITE", display.contentCenterX - 200, display.contentCenterY+100, "./fonts/Super-Mario-World.ttf", 50 )
+
+	local function openWebsite()
+		system.openURL( "http://www.andresrodh.com" )
+	end
+
+	website:addEventListener("tap", openWebsite)
+
+	-- repo link
+    local repo = display.newText( "REPO", display.contentCenterX + 200, display.contentCenterY+100, "./fonts/Super-Mario-World.ttf", 50 )
+
+	local function openRepo()
+		system.openURL( "https://github.com/AndresRodH/bobOmbSimulator" )
+	end
+
+	repo:addEventListener("tap", openRepo)
 
     -- load sound
     local pipeSound = audio.loadSound("./audio/pipe.wav")
@@ -32,7 +51,9 @@ function scene:create( event )
     menu:addEventListener("tap", goMenu)
 
     sceneGroup:insert( menu )
-	sceneGroup:insert( text1 )
+	sceneGroup:insert( logo )
+	sceneGroup:insert( website )
+	sceneGroup:insert( repo )
 	
 end
 
