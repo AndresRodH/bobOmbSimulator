@@ -1,17 +1,16 @@
------------------------------------------------------------------------------------------
---
--- main.lua
---
------------------------------------------------------------------------------------------
+--[[
 
--- hide the status bar
+Assignment #5
+
+Author: Andres Rodriguez
+Version: 1.0
+
+--]]
+
+-- hides top status bar
 display.setStatusBar( display.HiddenStatusBar )
 
--- turn on/off mui debug output
-_mui_debug = true
+local composer = require("composer")
 
--- include the Corona "composer" module
-local composer = require "composer"
-
--- load menu screen
-composer.gotoScene( "login" )
+-- start the game on the menu
+composer.gotoScene( "menu", "fade", 400 )
