@@ -147,7 +147,7 @@ function scene:create( event )
 	
     -- set up menu button    
     local menu = display.newImageRect( "./img/menu.png", 150, 50 )
-    menu.x = display.contentWidth - 100
+    menu.x = display.contentWidth - 150
     menu.y = 50
 
     local function goMenu( event )
