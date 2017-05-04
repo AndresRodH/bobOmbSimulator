@@ -89,44 +89,45 @@ function scene:create( event )
 
     -- setbob function
     function setbob ( event )
+        if(event.y < display.contentHeight - 165) then
+            if(event.phase == "began") then
+                -- display bob correctly and add it to the scene
+                local bob = display.newImage( "./img/bob_omb.png", event.x,event.y )
+                bob.height = 80
+                bob.width = 80
+                physics.addBody( bob, "dynamic", { density=0.2, friction=0.1, bounce=0.5, radius=30 })
+                -- play bob-omb cry
+                audio.play(myombSound)
 
-        if(event.phase == "began") then
-            -- display bob correctly and add it to the scene
-            local bob = display.newImage( "./img/bob_omb.png", event.x,event.y )
-            bob.height = 80
-            bob.width = 80
-            physics.addBody( bob, "dynamic", { density=0.2, friction=0.1, bounce=0.5, radius=30 })
-            -- play bob-omb cry
-            audio.play(myombSound)
+                local omb = ""
+                local explosion = ""
 
-            local omb = ""
-            local explosion = ""
+                -- boom!
+                local function blast( event )
+                    -- play explosion audio
+                    audio.play(byeBob)
+                    -- set up explosion!
+                    omb = display.newCircle( bob.x, bob.y, 80 )
+                    explosion = display.newImage( "./img/expl.png", bob.x, bob.y )
+                    bob:removeSelf()
+                    omb:setFillColor(0,0,0, 0)
+                    physics.addBody( omb, "static", {isSensor = true} )
+                    omb.myName = "omb"
+                    omb.collision = onLocalCollision
+                    omb:addEventListener( "collision", omb )
+                end
 
-            -- boom!
-            local function blast( event )
-                -- play explosion audio
-                audio.play(byeBob)
-                -- set up explosion!
-                omb = display.newCircle( bob.x, bob.y, 80 )
-                explosion = display.newImage( "./img/expl.png", bob.x, bob.y )
-                bob:removeSelf()
-                omb:setFillColor(0,0,0, 0)
-                physics.addBody( omb, "static", {isSensor = true} )
-                omb.myName = "omb"
-                omb.collision = onLocalCollision
-                omb:addEventListener( "collision", omb )
+                -- removes the bob-omb and the explosion graphics
+                local function removeStuff( event )
+                    omb:removeSelf()
+                    explosion:removeSelf()
+                end
+
+                -- set a delay of 3 seconds for the blast!
+                timer.performWithDelay(3000, blast )
+                -- remove the explosion graphics
+                timer.performWithDelay(3100, removeStuff)
             end
-
-            -- removes the bob-omb and the explosion graphics
-            local function removeStuff( event )
-                omb:removeSelf()
-                explosion:removeSelf()
-            end
-
-            -- set a delay of 3 seconds for the blast!
-            timer.performWithDelay(3000, blast )
-            -- remove the explosion graphics
-            timer.performWithDelay(3100, removeStuff)
         end
     end
 
