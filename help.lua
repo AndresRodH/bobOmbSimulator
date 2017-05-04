@@ -11,8 +11,9 @@ function scene:create( event )
 	--This self.view is where you should insert visual elements pertaining to the scene.
 	
 	-- Standard text object
-	local text1 = display.newText( "Tap anywhere to drop bombs!", display.contentCenterX, display.contentCenterY, "./fonts/Super-Mario-World.ttf", 70 )
-
+	local text1 = display.newText( "TAP ANYWHERE TO DROP BOMBS!", display.contentCenterX, display.contentCenterY-100, "./fonts/Super-Mario-World.ttf", 70 )
+	local text2 = display.newText( "TAP THE [!] BOX WHILE PLAYING FOR BOMB SKINS", display.contentCenterX, display.contentCenterY+100, "./fonts/Super-Mario-World.ttf", 50)
+	
     -- load sound
     local upSound = audio.loadSound("./audio/1-up.wav")
 
@@ -32,6 +33,7 @@ function scene:create( event )
 
     sceneGroup:insert( menu )
 	sceneGroup:insert( text1 )
+	sceneGroup:insert( text2 )
 	
 end
 
