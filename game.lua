@@ -82,9 +82,7 @@ function scene:create( event )
     rWall.anchorY = 0
     physics.addBody(rWall, "static", {})
     
-    -- load sounds: spawn, explosion and menu tap
-    local myombSound = audio.loadSound(bobSpawn)
-    local byeBob = audio.loadSound(boom)
+    -- load pause sound
     local pauseSound = audio.loadSound("./audio/pause.wav")
 
     -- setbob function
@@ -92,7 +90,7 @@ function scene:create( event )
         if(event.y < display.contentHeight - 165) then
             if(event.phase == "began") then
                 -- display bob correctly and add it to the scene
-                local bob = display.newImage( "./img/trump.png", event.x,event.y )
+                local bob = display.newImage( activeSkin, event.x,event.y )
                 bob.height = 80
                 bob.width = 80
                 physics.addBody( bob, "dynamic", { density=0.2, friction=0.1, bounce=0.5, radius=30 })

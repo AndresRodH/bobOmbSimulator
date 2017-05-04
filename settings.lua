@@ -10,29 +10,67 @@ function scene:create( event )
 	--and it contains a unique self.view property which is a reference to the display group associated with the scene. 
 	--This self.view is where you should insert visual elements pertaining to the scene.
 	
-    local text1 = display.newImageRect( "./img/made.png", 575, 640 )
-    text1.x = display.contentCenterX
-    text1.y = display.contentCenterY
+	-- load sound
+    local pipeSound = audio.loadSound("./audio/pipe.wav")
+
+	-- set title
+    local text1 = display.newText( "Bomb Skins", display.contentCenterX, 150, "./fonts/Super-Mario-World.ttf", 70 )
+
+	-- bombette
+	local bombette = display.newImageRect("./img/bombette.png", 200, 200)
+	bombette.x = display.contentCenterX - display.contentWidth/4
+	bombette.y = display.contentCenterY
+
+	local function setBombette ()
+		print( "SKIN SELECTED: Bombette")
+		activeSkin = "./img/bombette.png"
+		myombSound = audio.loadSound("./audio/mparty8_bob-omb.wav")
+    	byeBob = audio.loadSound("./audio/bye_bob-omb.wav")
+		audio.play( pipeSound )
+		composer.gotoScene( "game", "zoomInOutFade"  )
+	end
+
+	bombette:addEventListener("tap", setBombette)
+
+	-- bob_omb
+	local bob_omb = display.newImageRect("./img/bob_omb.png", 200, 200)
+	bob_omb.x = display.contentCenterX
+	bob_omb.y = display.contentCenterY
+
+	local function setBobOmb ()
+		print( "SKIN SELECTED: bob_omb")
+		activeSkin = "./img/bob_omb.png"
+		myombSound = audio.loadSound("./audio/mparty8_bob-omb.wav")
+    	byeBob = audio.loadSound("./audio/bye_bob-omb.wav")
+		audio.play( pipeSound )
+		composer.gotoScene( "game", "zoomInOutFade"  )
+	end
+
+	bob_omb:addEventListener("tap", setBobOmb)
+
+	-- trump
+	local trump = display.newImageRect("./img/trump.png", 200, 200)
+	trump.x = display.contentCenterX + display.contentWidth/4
+	trump.y = display.contentCenterY
+
+	local function setTrump ()
+		print( "SKIN SELECTED: Trump")
+		activeSkin = "./img/trump.png"
+		myombSound = audio.loadSound("./audio/I'm_really_rich.wav")
+    	byeBob = audio.loadSound("./audio/get_out_of_here.wav")
+		audio.play( pipeSound )
+		composer.gotoScene( "game", "zoomInOutFade"  )
+	end
+
+	trump:addEventListener("tap", setTrump)
 
     -- load sound
     local pipeSound = audio.loadSound("./audio/pipe.wav")
 
-    -- set up menu button    
-    local menu = display.newImageRect( "./img/back.png", 150, 50 )
-    menu.x = display.contentWidth - 150
-    menu.y = 50
-
-    local function goMenu( event )
-        print("Menu page")
-        audio.play(pipeSound)
-		composer.gotoScene( "menu", "slideRight", 400  )
-		--return true -- prevents other objects from receiving the event, and basically means that it worked. 
-    end
-
-    menu:addEventListener("tap", goMenu)
-
-    sceneGroup:insert( menu )
 	sceneGroup:insert( text1 )
+	sceneGroup:insert( bombette )
+	sceneGroup:insert( bob_omb )
+	sceneGroup:insert( trump )
 	
 end
 
