@@ -9,16 +9,15 @@ function scene:create( event )
 	--This is an event listener that responds to specific events, 
 	--and it contains a unique self.view property which is a reference to the display group associated with the scene. 
 	--This self.view is where you should insert visual elements pertaining to the scene.
-	 
-    local text1 = display.newImageRect( "tap.png", 1080, 100 )
-    text1.x = display.contentCenterX
-    text1.y = display.contentCenterY
+	
+	-- Standard text object
+	local text1 = display.newText( "Tap anywhere to drop bombs!", display.contentCenterX, display.contentCenterY, "./fonts/Super-Mario-World.ttf", 24 )
 
     -- load sound
-    local upSound = audio.loadSound("1-up.wav")
+    local upSound = audio.loadSound("./audio/1-up.wav")
 
     -- set up menu button    
-    local menu = display.newImageRect( "back.png", 150, 50 )
+    local menu = display.newImageRect( "./img/back.png", 150, 50 )
     menu.x = display.contentWidth - 100
     menu.y = 50
 

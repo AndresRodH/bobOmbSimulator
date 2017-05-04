@@ -21,18 +21,17 @@ function scene:create( event )
 	background.y = display.contentCenterY
 	
     -- set up title
-	local title = display.newImageRect( "title.png", 900, 400 )
+	local title = display.newImageRect( "./img/title.png", 900, 400 )
     title.x = display.contentCenterX
     title.y = display.contentCenterY - 100
 	
     -- load button sounds
-    local playSound = audio.loadSound("coin.wav")
-    local jumpSound = audio.loadSound("jump.wav")
-    local appsSound = audio.loadSound("appears.wav")
-    local powrSound = audio.loadSound("power.wav")
+    local playSound = audio.loadSound("./audio/coin.wav")
+    local appsSound = audio.loadSound("./audio/appears.wav")
+    local powrSound = audio.loadSound("./audio/power.wav")
 
     -- set up play button
-    local play = display.newImageRect( "play.png", 250, 100 )
+    local play = display.newImageRect( "./img/play.png", 250, 100 )
     play.x = display.contentCenterX
     play.y = display.contentCenterY + 300
 
@@ -46,7 +45,7 @@ function scene:create( event )
     play:addEventListener("tap", goPlay)
 
     -- set up help button    
-    local help = display.newImageRect( "help.png", 150, 50 )
+    local help = display.newImageRect( "./img/help.png", 150, 50 )
     help.x = display.contentCenterX/2
     help.y = display.contentCenterY + 300
 
@@ -59,7 +58,7 @@ function scene:create( event )
 
     help:addEventListener("tap", goHelp)
     
-    local about = display.newImageRect( "about.png", 150, 50 )
+    local about = display.newImageRect( "./img/about.png", 150, 50 )
     about.x = display.contentCenterX/2 + display.contentCenterX
     about.y = display.contentCenterY + 300
 

@@ -10,15 +10,15 @@ function scene:create( event )
 	--and it contains a unique self.view property which is a reference to the display group associated with the scene. 
 	--This self.view is where you should insert visual elements pertaining to the scene.
 	
-    local text1 = display.newImageRect( "made.png", 575, 640 )
+    local text1 = display.newImageRect( "./img/made.png", 575, 640 )
     text1.x = display.contentCenterX
     text1.y = display.contentCenterY
 
     -- load sound
-    local pipeSound = audio.loadSound("pipe.wav")
+    local pipeSound = audio.loadSound("./audio/pipe.wav")
 
     -- set up menu button    
-    local menu = display.newImageRect( "back.png", 150, 50 )
+    local menu = display.newImageRect( "./img/back.png", 150, 50 )
     menu.x = display.contentWidth - 100
     menu.y = 50
 

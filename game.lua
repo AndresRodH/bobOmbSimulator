@@ -9,7 +9,7 @@ function scene:create( event )
 	--The primary object in the Composer library is the scene object. This is an event listener that responds to specific events, and it contains a unique self.view property which is a reference to the display group associated with the scene. This self.view is where you should insert visual elements pertaining to the scene.
 	
     -- set background
-    local background = display.newImageRect( "overworld_bg.png", display.contentWidth, display.contentHeight )
+    local background = display.newImageRect( "./img/overworld_bg.png", display.contentWidth, display.contentHeight )
     background.x = display.contentWidth / 2
     background.y = display.contentHeight / 2	
     sceneGroup:insert( background )
@@ -19,7 +19,7 @@ function scene:create( event )
 
     for i = 1, 5 do
         for j = 1, 5 do
-            boxes[i] = display.newImage( "box.png", 1400 + (i*82),display.contentHeight - 120 - (j*82) )
+            boxes[i] = display.newImage( "./img/box.png", 1400 + (i*82),display.contentHeight - 120 - (j*82) )
             boxes[i].height = 80
             boxes[i].width = 80
             physics.addBody( boxes[i], { density=0.2, friction=0.1, bounce=0.5 } )
@@ -30,19 +30,19 @@ function scene:create( event )
 
     -- place triforce piramid
     local triangleShape = {0,-150,150,150,-150,150}
-    local triangle1 = display.newImage("triangle.png")
+    local triangle1 = display.newImage("./img/triangle.png")
     triangle1.x = 225
     triangle1.y = display.contentHeight - 300
     triangle1.width = 300
     triangle1.height = 300
 
-    local triangle2 = display.newImage("triangle.png")
+    local triangle2 = display.newImage("./img/triangle.png")
     triangle2.x = 522
     triangle2.y = display.contentHeight - 300
     triangle2.width = 300
     triangle2.height = 300
 
-    local triangle3 = display.newImage("triangle.png")
+    local triangle3 = display.newImage("./img/triangle.png")
     triangle3.x = (225 + 525)/2
     triangle3.y = display.contentHeight - 604
     triangle3.width = 300
@@ -83,16 +83,16 @@ function scene:create( event )
     physics.addBody(rWall, "static", {})
     
     -- load sounds: spawn, explosion and menu tap
-    local myombSound = audio.loadSound("mparty8_bob-omb.wav")
-    local byeBob = audio.loadSound("bye_bob-omb.wav")
-    local pauseSound = audio.loadSound("pause.wav")
+    local myombSound = audio.loadSound("./audio/mparty8_bob-omb.wav")
+    local byeBob = audio.loadSound("./audio/bye_bob-omb.wav")
+    local pauseSound = audio.loadSound("./audio/pause.wav")
 
     -- setbob function
     function setbob ( event )
 
         if(event.phase == "began") then
             -- display bob correctly and add it to the scene
-            local bob = display.newImage( "bob_omb.png", event.x,event.y )
+            local bob = display.newImage( "./img/bob_omb.png", event.x,event.y )
             bob.height = 80
             bob.width = 80
             physics.addBody( bob, "dynamic", { density=0.2, friction=0.1, bounce=0.5, radius=30 })
@@ -108,7 +108,7 @@ function scene:create( event )
                 audio.play(byeBob)
                 -- set up explosion!
                 omb = display.newCircle( bob.x, bob.y, 80 )
-                explosion = display.newImage( "expl.png", bob.x, bob.y )
+                explosion = display.newImage( "./img/expl.png", bob.x, bob.y )
                 bob:removeSelf()
                 omb:setFillColor(0,0,0, 0)
                 physics.addBody( omb, "static", {isSensor = true} )
@@ -145,7 +145,7 @@ function scene:create( event )
     end
 	
     -- set up menu button    
-    local menu = display.newImageRect( "menu.png", 150, 50 )
+    local menu = display.newImageRect( "./img/menu.png", 150, 50 )
     menu.x = display.contentWidth - 100
     menu.y = 50
 
