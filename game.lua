@@ -83,8 +83,8 @@ function scene:create( event )
     physics.addBody(rWall, "static", {})
     
     -- load sounds: spawn, explosion and menu tap
-    local myombSound = audio.loadSound("./audio/mparty8_bob-omb.wav")
-    local byeBob = audio.loadSound("./audio/bye_bob-omb.wav")
+    local myombSound = audio.loadSound(bobSpawn)
+    local byeBob = audio.loadSound(boom)
     local pauseSound = audio.loadSound("./audio/pause.wav")
 
     -- setbob function
@@ -92,7 +92,7 @@ function scene:create( event )
         if(event.y < display.contentHeight - 165) then
             if(event.phase == "began") then
                 -- display bob correctly and add it to the scene
-                local bob = display.newImage( "./img/bob_omb.png", event.x,event.y )
+                local bob = display.newImage( "./img/trump.png", event.x,event.y )
                 bob.height = 80
                 bob.width = 80
                 physics.addBody( bob, "dynamic", { density=0.2, friction=0.1, bounce=0.5, radius=30 })
@@ -159,6 +159,20 @@ function scene:create( event )
 
     menu:addEventListener("tap", goMenu)
 
+    -- set up settings button    
+    local settings = display.newImageRect( "./img/exclamation.png", 75, 75 )
+    settings.x = 150
+    settings.y = 50
+
+    local function goSettings( event )
+        print("Settings page")
+        audio.play(pauseSound)
+		composer.gotoScene( "settings", "zoomInOutFade", 400  )
+		--return true -- prevents other objects from receiving the event, and basically means that it worked. 
+    end
+
+    settings:addEventListener("tap", goSettings)
+
     -- listens to a touch so a bob-omb can be created
     background:addEventListener("touch",setbob)
 
@@ -171,6 +185,7 @@ function scene:create( event )
     sceneGroup:insert( triangle1 )
     sceneGroup:insert( triangle2 )
     sceneGroup:insert( triangle3 )
+    sceneGroup:insert( settings )
 
 end
 
